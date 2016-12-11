@@ -25,7 +25,7 @@ def cov():
     cov.report()
     basedir = os.path.abspath(os.path.dirname(__file__))
 
-    covdir = os.path.join(basedir, 'coverage.py')
+    covdir = os.path.join(basedir, 'Coverage.py')
     try:
         shutil.rmtree(covdir)
     except OSError:
