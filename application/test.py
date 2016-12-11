@@ -85,14 +85,6 @@ class FlaskrTestCase(unittest.TestCase):
             quantity=100000,
         ), follow_redirects=True)
         assert '1' in rv.data
-        rv = self.app.post('/submit', data=dict(
-            quantity=1000000,
-        ), follow_redirects=True)
-        assert '1' in rv.data
-        rv = self.app.post('/submit', data=dict(
-            quantity=100,
-        ), follow_redirects=True)
-        assert '1' in rv.data
 
     def test_history(self):
         rv = self.app.get('/b')
@@ -105,6 +97,7 @@ class FlaskrTestCase(unittest.TestCase):
         ), follow_redirects=True)
         assert '1' in rv.data
         print "delete user data"
+
 
 
 if __name__ == '__main__':
