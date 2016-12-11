@@ -1,18 +1,13 @@
 import unittest
 import os
 import coverage
-from flask_script import Manager
-from app import app
 import shutil
 
-manager = Manager(app)
 
-@manager.command
 def test():
     tests = unittest.TestLoader().loadTestsFromName("test");
     unittest.TextTestRunner(verbosity=5).run(tests)
 
-@manager.command
 def cov():
     """Runs the unit tests with coverage."""
     cov = coverage.coverage(branch=True,
@@ -41,4 +36,4 @@ def cov():
 
 
 if __name__ == '__main__':
-    manager.run()
+    cov()
