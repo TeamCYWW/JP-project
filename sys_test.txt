@@ -1,0 +1,37 @@
+This is log for system test:
+
+Register Test:
+    enter number as username and password:
+    successfully register new user
+    enter other ASCII symbol as username and password:
+    successfully register new user
+    enter symbol longer than 500 into text box:
+    the text box will now allow more symbol if 500 limitation reached
+
+
+Login Test:
+    enter correct password and username and submit:
+    successfully login and jump to trading pages
+    enter random ASCII symbol as username and password which does not match any record:
+    Alert of failed to login pop up
+    enter symbol longer than 500 into text box:
+    the text box will now allow more symbol if 500 limitation reached
+
+Trading Test:
+
+Enter noun numeric value
+    No reaction in textbox.
+Enter number < 1:
+    enter 0:
+    pop up alert "Input rejected, Amout out of range:[1,1000000]"
+Enter number > 1000000
+    enter 1000001
+    pop up alert "Input rejected, Amout out of range:[1,1000000]"
+Enter number between 1 and 1000000 (edge included)
+    enter 1:
+    start trading normally and finish
+    enter 500000
+    start trading normally and finish
+    enter 1000000
+    start trading normally and finish
+    
