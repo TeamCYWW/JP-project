@@ -72,6 +72,8 @@
 	<br>
 	<label id='record'>I'm not trading</label>
 	<br>
+	<label id='result'>No trading result yet</label>
+	<br>
 	<label id='status'>Online</label>
 
 </body>
@@ -91,6 +93,21 @@
 		dataType: 'text',
 		success: function(msgResult){
 			document.getElementById('record').innerHTML = msgResult;
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown){
+		}
+		
+		});
+	}
+
+	function update_result(){
+		$.ajax({
+		type: "GET",
+		url: "http://localhost:8000/result",
+		data: {},
+		dataType: 'text',
+		success: function(msgResult){
+			document.getElementById('result').innerHTML = msgResult;
 		},
 		error: function(XMLHttpRequest, textStatus, errorThrown){
 		}
@@ -179,7 +196,8 @@
 		var timer2 = setInterval(myTimer2, 1000);
 		function myTimer2() {
 
-		
+		update_textbox();
+		update_result();
 		$.ajax({
 		type: "GET",
 		url: "http://localhost:8000/get_price",

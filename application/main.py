@@ -329,7 +329,8 @@ def strategy():
 
     """
     global new_thread
-    if new_thread is not None:
+    # print new_thread
+    if new_thread is None:
         return "I'm not trading"
     else:
         return "Doing trading"
@@ -346,6 +347,9 @@ def trade_res():
     global new_thread
     if new_thread is not None:
         trade_result = new_thread.join()
+        print trade_result
+        print "O0000000"
+        new_thread = None
     else:
         trade_result = "No trading started yet"
     return trade_result
