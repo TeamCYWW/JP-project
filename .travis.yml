@@ -23,4 +23,5 @@ script: coverage run --source=. --omit=algo_unitest.py,manage.py  manage.py
 
 after_success:
   coveralls
+  ls
  
