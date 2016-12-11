@@ -84,7 +84,7 @@ class UseThread(threading.Thread):
             database connection object
         """
         try:
-            conn = psycopg2.connect("dbname='stock' user='Linnan' host='localhost' password='' ")
+            conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
             print 'get connect'
         except Exception:
             print "I am unable to connect to the database"

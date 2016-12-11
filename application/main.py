@@ -184,7 +184,7 @@ def index():
     return render_template("index.html", **locals())
 
 
-@APP.route('/register')
+@APP.route('/reg')
 def open_reg():
     """
     access the main page
@@ -349,6 +349,21 @@ def trade_res():
     else:
         trade_result = "No trading started yet"
     return trade_result
+
+
+@APP.route("/lookup")
+@crossdomain(origin='*')
+def lookup():
+    try:
+        newcurs = g.conn.execute("""Select * from user_info;""")
+    except Exception as info:
+        print "can not read record from database"
+        return str(info)
+    print "I'm looking up for user..."
+    for result in newcurs:
+        print result
+    newcurs.close()
+    return "1\n"
 
 
 @APP.route("/register", methods=['POST'])

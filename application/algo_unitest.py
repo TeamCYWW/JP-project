@@ -15,8 +15,20 @@ class WidgetTestCase(unittest.TestCase):
                          'incorrect Time calculation')
 
     def test_cal_interval_time(self):
-        self.assertEqual(self.instance.cal_interval_time(29569, 500, 100), 5913.8,
+        self.assertEqual(self.instance.cal_interval_time(10000, 500, 100), 4000,
                          'incorrect Time calculation')
+
+    def set_up(self):
+        connection = self.instance.connect_database()
+        assert connection != 1
+        print "connect to database"
+        return connection
+
+    def test_database(self):
+        connection = self.set_up()
+        cursor = connection.cursor()
+        self.instance.database_cleanup(connection, cursor)
+        # self.instance.insert_info()
 
 
 if __name__ == '__main__':
