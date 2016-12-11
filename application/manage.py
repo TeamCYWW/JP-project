@@ -9,8 +9,7 @@ manager = Manager(app)
 
 @manager.command
 def test():
-    """Runs the unit tests without coverage."""
-    tests = unittest.TestLoader().discover('tests')
+    tests = unittest.TestLoader().loadTestsFromName("test");
     unittest.TextTestRunner(verbosity=5).run(tests)
 
 @manager.command
@@ -22,7 +21,7 @@ def cov():
                                             '*/python2.7/*'
                                             ])
     cov.start()
-    tests = unittest.TestLoader().discover('tests')
+    tests = unittest.TestLoader().loadTestsFromName("test");
     unittest.TextTestRunner(verbosity=5).run(tests)
     cov.stop()
     cov.save()
