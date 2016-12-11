@@ -31,6 +31,8 @@ def cov():
     except OSError:
         pass
 
+    print covdir
+    
     cov.html_report(directory=covdir)
     cov.erase()
 
