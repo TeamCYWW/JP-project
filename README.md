@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/TeamCYWW/JP-project.svg?branch=master)](https://travis-ci.org/TeamCYWW/JP-project)
-
+[![Coverage Status](https://coveralls.io/repos/github/TeamCYWW/JP-project/badge.svg?branch=master)](https://coveralls.io/github/TeamCYWW/JP-project?branch=master)
 
 Last update: Oct 27th 2016
 
