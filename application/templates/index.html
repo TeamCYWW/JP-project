@@ -94,10 +94,12 @@
 				<thead>
 					<tr>
 						<th data-options="field:'z',width:50">ID</th>
-						<th data-options="field:'a',width:200">Time</th>
-						<th data-options="field:'b',width:250">Result</th>
+						<th data-options="field:'a',width:150">Time</th>
+						<th data-options="field:'b',width:220">Result</th>
 						<th data-options="field:'c',width:60">Price</th>
-						<th data-options="field:'d',width:80">Order Size</th>
+						<th data-options="field:'d',width:70">Order Size</th>
+						<th data-options="field:'e',width:60">Sold Num</th>
+						<th data-options="field:'f',width:80">Sold Value</th>
 					</tr>
 				</thead>
 			</table>
@@ -420,7 +422,7 @@ function updateMarketPrice() {
             });
             window.myLine.update();
 
-			if (m.sold_amount>0 || m.sold_amount>0) {
+			if (m.have_not_sell>0 || m.sold_amount>0) {
 			config_pie.data.datasets[0].data[0]=m.sold_amount;
 			config_pie.data.datasets[0].data[1]=m.have_not_sell;
 			}
@@ -624,7 +626,7 @@ function place_trading() {
 	if (status<0) return;
 
     var value = document.getElementById("quantity").value;
-    if (value < 0 || value > 1000000) {
+    if (value <= 0 || value > 1000000) {
 	    BootstrapDialog.show({
             title: 'Input rejected',
             message: 'Amout out of range:[1,1000000]'
