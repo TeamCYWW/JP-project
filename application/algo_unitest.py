@@ -6,7 +6,7 @@ import psycopg2
 
 class TestCase(unittest.TestCase):
     def setUp(self):
-        self.instance = UseThread(0)
+        self.instance = UseThread(10)
 
     def tearDown(self):
         self.instance = None
@@ -14,9 +14,15 @@ class TestCase(unittest.TestCase):
     def test_cal_current_time(self):
         self.assertEqual(self.instance.cal_current_time('2016-12-10 08:12:49.510760'), 29569.510760,
                          'incorrect Time calculation')
+        try:
+            self.instance.cal_current_time('2016-12-10 08:40:49.510760')
+        except SystemExit as info:
+            print info
 
     def test_cal_interval_time(self):
         self.assertEqual(self.instance.cal_interval_time(10000, 500, 100), 4000,
+                         'incorrect Time calculation')
+        self.assertEqual(self.instance.cal_interval_time(39000, 500, 100), 0,
                          'incorrect Time calculation')
 
     def set_up(self):
@@ -30,6 +36,8 @@ class TestCase(unittest.TestCase):
         cursor = connection.cursor()
         self.instance.database_cleanup(connection, cursor)
         print "database cleaned"
+        self.instance.database_cleanup(connection, None)
+        print "Test to fail clean database"
 
     def test_database_insert(self):
         # conn = psycopg2.connect("host='localhost' dbname='stock' user='postgres' password=''")
@@ -45,9 +53,27 @@ class TestCase(unittest.TestCase):
         self.instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, cursor, conn)
         try:
             self.instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, None, conn)
-        except Exception as info:
+        except SystemExit as info:
             print info
             print "Pass exception test"
 
+    def test_quote_info(self):
+        rv = self.instance.quote_info()
+        print rv
+
+    def test_make_order(self, ):
+        market_info = {'top_bid': {'price': 104}}
+        rv = self.instance.make_order(100, market_info, 10)
+        print rv
+        market_info = {'top_bid': {'price': 9999999}}
+        rv = self.instance.make_order("hello", market_info, -20)
+        print rv
+
+    def test_run(self):
+        self.instance.run()
+        self.instance = UseThread(30)
+        self.instance.run()
+        self.instance = UseThread(0)
+        self.instance.run()
 if __name__ == '__main__':
     unittest.main()

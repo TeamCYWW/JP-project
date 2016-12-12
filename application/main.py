@@ -265,27 +265,6 @@ def get_price():
         return "urlopen_error"
 
 
-@APP.route("/a")
-@crossdomain(origin='*')
-def handle_a():
-    """
-    handle request of getting time and price
-
-    """
-    try:
-        newcurs = g.conn.execute("""SELECT * FROM info ORDER BY id""")
-    except Exception as info:
-        print "can not read record from database"
-        return str(info)
-
-    info = []
-    for result in newcurs:
-        temp = {'a': result['time_quote'], 'b': result['info'].encode("utf-8")}
-        info.insert(0, temp)
-    newcurs.close()
-    return jsonify(rows=info)
-
-
 @APP.route("/b")
 @crossdomain(origin='*')
 def handle_b():

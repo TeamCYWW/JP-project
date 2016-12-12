@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b7a9da3-2376-46ef-babf-a414d58fcd7d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/.coverage" afterPath="$PROJECT_DIR$/application/.coverage" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/Algorithm.py" afterPath="$PROJECT_DIR$/application/Algorithm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/alfjsdjfdfasf.py" afterPath="$PROJECT_DIR$/application/alfjsdjfdfasf.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/algo_unitest.py" afterPath="$PROJECT_DIR$/application/algo_unitest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/main.py" afterPath="$PROJECT_DIR$/application/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/templates/index.html" afterPath="$PROJECT_DIR$/application/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/templates/login.html" afterPath="$PROJECT_DIR$/application/templates/login.html" />
     </list>
     <ignored path="JP-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,17 +31,17 @@
         <entry file="file://$PROJECT_DIR$/application/Algorithm.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+              <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4921875">
-              <caret line="470" column="21" selection-start-line="470" selection-start-column="21" selection-end-line="470" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="266" column="0" selection-start-line="266" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
               <folding>
                 <element signature="e#96#106#0" expanded="true" />
               </folding>
@@ -51,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="algo_unitest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="algo_unitest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/algo_unitest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.6820809">
+              <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -79,7 +77,7 @@
         <entry file="file://$PROJECT_DIR$/application/test.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+              <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -122,17 +120,17 @@
         <option value="$PROJECT_DIR$/sys_test.txt" />
         <option value="$PROJECT_DIR$/skdalfjasf.py" />
         <option value="$PROJECT_DIR$/application/alfjsdjfdfasf.py" />
+        <option value="$PROJECT_DIR$/application/Algorithm.py" />
         <option value="$PROJECT_DIR$/application/main.py" />
         <option value="$PROJECT_DIR$/application/algo_unitest.py" />
-        <option value="$PROJECT_DIR$/application/Algorithm.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="234" />
-    <option name="y" value="23" />
-    <option name="width" value="1068" />
-    <option name="height" value="774" />
+    <option name="x" value="133" />
+    <option name="y" value="37" />
+    <option name="width" value="1192" />
+    <option name="height" value="748" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -159,6 +157,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -193,8 +193,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -446,47 +444,47 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 26m 55s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 05h 46m 46s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 27m 32s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 05h 51m 28s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 30m 52s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 05h 52m 18s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 31m 28s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 05h 53m 26s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 34m 52s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 05h 54m 09s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 35m 43s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 05h 56m 10s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 36m 05s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 05h 57m 34s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 36m 20s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 05h 57m 44s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 45m 07s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 06h 00m 03s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 04h 51m 39s.xml">
+    <history-entry file="Unittests_in_algo_unitest - 2016.12.12 at 06h 01m 01s.xml">
       <configuration name="Unittests in algo_unitest" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="234" y="23" width="1068" height="774" extended-state="0" />
+    <frame x="133" y="37" width="1192" height="748" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15168539" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16946308" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15948963" sideWeight="0.21661998" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37730497" sideWeight="0.78338003" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15463917" sideWeight="0.78338003" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -525,6 +523,16 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -875,21 +883,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/manage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -903,12 +900,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/algo_unitest.py">
+    <entry file="file://$PROJECT_DIR$/application/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+          <caret line="98" column="32" selection-start-line="98" selection-start-column="32" selection-end-line="98" selection-end-column="32" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="266" column="0" selection-start-line="266" selection-start-column="0" selection-end-line="266" selection-end-column="0" />
+          <folding>
+            <element signature="e#96#106#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -916,17 +923,17 @@
     <entry file="file://$PROJECT_DIR$/application/Algorithm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+          <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/main.py">
+    <entry file="file://$PROJECT_DIR$/application/algo_unitest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4921875">
-          <caret line="470" column="21" selection-start-line="470" selection-start-column="21" selection-end-line="470" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.6820809">
+          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
           <folding>
-            <element signature="e#96#106#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

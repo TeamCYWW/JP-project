@@ -166,8 +166,8 @@ class UseThread(threading.Thread):
                 print info
                 connection.rollback()
                 count += 1
-        # if count > 9:
-        #     sys.exit(9)
+        if count > 9:
+            sys.exit(9)
         return db_id
 
     @staticmethod
