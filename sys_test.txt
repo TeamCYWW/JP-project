@@ -7,7 +7,8 @@ Register Test:
     successfully register new user
     enter symbol longer than 500 into text box:
     the text box will now allow more symbol if 500 limitation reached
-
+    try to register using the username of an existing user:
+    register rejected
 
 Login Test:
     enter correct password and username and submit:
@@ -16,17 +17,19 @@ Login Test:
     Alert of failed to login pop up
     enter symbol longer than 500 into text box:
     the text box will now allow more symbol if 500 limitation reached
-
+    
 Trading Test:
+
+Start Trading:
 
 Enter noun numeric value
     No reaction in textbox.
 Enter number < 1:
     enter 0:
-    pop up alert "Input rejected, Amout out of range:[1,1000000]"
+    pop up alert "Input rejected, Amount out of range:[1,1000000]"
 Enter number > 1000000
     enter 1000001
-    pop up alert "Input rejected, Amout out of range:[1,1000000]"
+    pop up alert "Input rejected, Amount out of range:[1,1000000]"
 Enter number between 1 and 1000000 (edge included)
     enter 1:
     start trading normally and finish
@@ -34,4 +37,38 @@ Enter number between 1 and 1000000 (edge included)
     start trading normally and finish
     enter 1000000
     start trading normally and finish
+ Try to start a new trasaction when the trading is ongoing.
+    The start button is disabled so nothing happens.
+
+Server Status:
+
+Start our server and JP morgan server, enter our platform
+    The server status is going to be updated to "connected".
+Start our server and JP morgan server, enter our platform, then close our server
+    The server status is going to be updated to "server error".
+Start our server and JP morgan server, enter our platform, then close JPmorgan server
+    The server status is going to be updated to "market error".
+Start our server and JP morgan server, enter our platform, then close JPmorgan server, then restart JPmorgan server
+    The server status is going to be updated to "connected" again.
     
+
+Trading Status:
+
+Start our server and JP morgan server, enter our platform
+    The trading status is "Stopped".
+Start trading by inputing an amount and clicking the start button
+    The trading status is "Running".
+Wait a request to end
+    The trading status is "Stopped" again.
+    
+Graph:
+
+Every 2 seconds:
+    The market price chart updates the latest market price.
+    The bar chart updates the markect price and average selling price.
+    The pie chart updates the completed amount and undone amount.
+
+When the trading finished:
+    The pie chart disappears.
+    
+
