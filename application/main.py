@@ -6,7 +6,6 @@ This is server, run this file when use
 # import traceback
 # import random
 
-import sys
 import json
 import urllib2
 from datetime import timedelta
@@ -75,14 +74,14 @@ def crossdomain(origin=None, methods=None, headers=None,
         Returns:
             none
         """
-    if methods is not None:
-        methods = ', '.join(sorted(x.upper() for x in methods))
-    if headers is not None and not isinstance(headers, basestring):
-        headers = ', '.join(x.upper() for x in headers)
-    if not isinstance(origin, basestring):
-        origin = ', '.join(origin)
-    if isinstance(max_age, timedelta):
-        max_age = max_age.total_seconds()
+    # if methods is not None:
+    #     methods = ', '.join(sorted(x.upper() for x in methods))
+    # if headers is not None and not isinstance(headers, basestring):
+    #     headers = ', '.join(x.upper() for x in headers)
+    # if not isinstance(origin, basestring):
+    #     origin = ', '.join(origin)
+    # if isinstance(max_age, timedelta):
+    #     max_age = max_age.total_seconds()
 
     def get_methods():
         """
@@ -179,13 +178,13 @@ def main():
     return render_template("login.html", **locals())
 
 
-@APP.route('/index')
-def index():
-    """
-    access the main page
-
-    """
-    return render_template("index.html", **locals())
+# @APP.route('/index')
+# def index():
+#     """
+#     access the main page
+#
+#     """
+#     return render_template("index.html", **locals())
 
 
 @APP.route('/reg')

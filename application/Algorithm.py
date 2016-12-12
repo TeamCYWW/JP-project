@@ -2,7 +2,7 @@
 This is algorithm for trading
 """
 import urllib2
-# import time
+import math
 import re
 import datetime
 import sys
@@ -83,7 +83,7 @@ class UseThread(threading.Thread):
         if time_left < 0:
             return 0
         else:
-            return time_left / (quantity / order_size)
+            return time_left / (math.ceil(quantity / order_size))
 
     @staticmethod
     def connect_database():

@@ -61,7 +61,7 @@ class TestCase(unittest.TestCase):
         rv = self.instance.quote_info()
         print rv
 
-    def test_make_order(self, ):
+    def test_make_order(self):
         market_info = {'top_bid': {'price': 104}}
         rv = self.instance.make_order(100, market_info, 10)
         print rv
