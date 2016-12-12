@@ -306,7 +306,7 @@ class UseThread(threading.Thread):
         else:
             avg_price = 0
         print avg_price
-        result_order = "Finished with average price " + str(avg_price)
+        result_order = "Finished! avg price " + str(avg_price)
         sell_info['trans_id'] = self.insert_trans(sell_info, result_order, None, cur, conn)
         cur.close()
         conn.close()

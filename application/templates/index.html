@@ -90,12 +90,12 @@
 			<br/>
 			<br/>
 
-			<table id="order" class="easyui-datagrid" title="Order" style="height:250px" data-options="singleSelect:true,pageSize:100,pagination:true,collapsible:true,url:'b',method:'get',loadMsg:''">
+			<table id="order" class="easyui-datagrid" title="Order" style="height:250px" data-options="singleSelect:true,pageSize:100,fixed:false,pagination:true,collapsible:true,url:'b',method:'get',loadMsg:''">
 				<thead>
 					<tr>
 						<th data-options="field:'z',width:50">ID</th>
-						<th data-options="field:'a',width:150">Time</th>
-						<th data-options="field:'b',width:220">Result</th>
+						<th data-options="field:'a',width:170">Time</th>
+						<th data-options="field:'b',width:150">Result</th>
 						<th data-options="field:'c',width:60">Price</th>
 						<th data-options="field:'d',width:70">Order Size</th>
 						<th data-options="field:'e',width:60">Sold Num</th>
@@ -412,7 +412,7 @@ function updateMarketPrice() {
 			
 			
             var time = moment(m.time, "YYYY-MM-DD HH:mm:ss:SSSSSS");
-			if (time.hours>=8) late=true;
+			if (time.hour()>=8) late=true;
             var price = m.current_price;
 
 
@@ -639,6 +639,7 @@ function place_trading() {
 										title: 'System message',
 										message: 'Too late to make a trading'
 									});			
+				return;
 			}
 			$.ajax({
 				type: "GET",

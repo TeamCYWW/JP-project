@@ -178,13 +178,13 @@ def main():
     return render_template("login.html", **locals())
 
 
-# @APP.route('/index')
-# def index():
-#     """
-#     access the main page
-#
-#     """
-#     return render_template("index.html", **locals())
+@APP.route('/index')
+def index():
+    """
+    access the main page
+
+    """
+    return render_template("index.html", **locals())
 
 
 @APP.route('/reg')
