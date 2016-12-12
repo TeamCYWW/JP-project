@@ -635,6 +635,8 @@ function place_trading() {
 										title: 'System message',
 										message: 'Succeeded'
 									});
+						config_line.data.datasets[1].length=0;
+						window.myLine.update();
 					}
 					else {
 						BootstrapDialog.show({

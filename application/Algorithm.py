@@ -127,33 +127,6 @@ class UseThread(threading.Thread):
             connection.rollback()
 
     @staticmethod
-    def insert_info(data_id, time_stamp, message, cur, connection):
-        """
-        calculate time interval for next child order
-
-        Args:
-            data_id: database id
-            time_stamp: current time
-            message: market price
-            cur: database cursor
-            connection: database connection
-
-        Returns:
-            time interval in second
-        """
-        # insert server feedback to database
-        query = "INSERT INTO info (id, time_quote, info) VALUES ('{}', '{}', '{}');" \
-            .format(data_id, time_stamp, message)
-        # print query
-        try:
-            cur.execute(query)
-            connection.commit()
-        except Exception as info:
-            print "Can't insert data into market information form"
-            print info
-            connection.rollback()
-
-    @staticmethod
     def insert_trans(sell_info, result, order_info, cur, connection):
         """
         calculate time interval for next child order
@@ -193,8 +166,8 @@ class UseThread(threading.Thread):
                 print info
                 connection.rollback()
                 count += 1
-        if count > 9:
-            sys.exit(9)
+        # if count > 9:
+        #     sys.exit(9)
         return db_id
 
     @staticmethod
@@ -290,8 +263,6 @@ class UseThread(threading.Thread):
 
                     market_info = self.quote_info()
                     current_time = self.cal_current_time(market_info['timestamp'])
-                    # self.insert_info(info_id, time_mark, "Quoted at %s" % price, cur, conn)
-                    # info_id += 1
                     if order_size > 10:
                         order_size -= 10
                 else:

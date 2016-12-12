@@ -506,7 +506,7 @@ def login():
             newcurs.close()
             return "1\n"
     newcurs.close()
-    return "2\n"
+    return render_template("index.html", **locals())
 
 
 if __name__ == "__main__":

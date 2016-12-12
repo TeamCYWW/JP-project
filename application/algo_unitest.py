@@ -1,15 +1,14 @@
 import unittest
 from Algorithm import UseThread
+import sys
 import psycopg2
 
 
-
-class WidgetTestCase(unittest.TestCase):
+class TestCase(unittest.TestCase):
     def setUp(self):
         self.instance = UseThread(0)
 
     def tearDown(self):
-        self.instance.exit()
         self.instance = None
 
     def test_cal_current_time(self):
@@ -33,17 +32,22 @@ class WidgetTestCase(unittest.TestCase):
         print "database cleaned"
 
     def test_database_insert(self):
-        conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
-        print conn
+        # conn = psycopg2.connect("host='localhost' dbname='stock' user='postgres' password=''")
+        # cursor = conn.cursor()
+        conn = self.set_up()
         cursor = conn.cursor()
-        a = cursor.execute("""SELECT count(*) FROM user_info;""")
-        print a
-        for row in a:
-            print row
-
-        sell_info = {'trans_id': 1, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0}
-        # self.instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, connection, cursor)
-
+        cursor.execute('SELECT count(*) FROM transact')
+        row_count = 0
+        for row in cursor:
+            row_count += 1
+            print "row: %s    %s\n" % (row_count, row)
+        sell_info = {'trans_id': 1, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0, 'plan_value': 10000}
+        self.instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, cursor, conn)
+        try:
+            self.instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, None, conn)
+        except Exception as info:
+            print info
+            print "Pass exception test"
 
 if __name__ == '__main__':
     unittest.main()
