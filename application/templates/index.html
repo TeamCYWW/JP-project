@@ -1,389 +1,702 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>Trading platform</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Narrow Jumbotron Template for Bootstrap</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="../static/dist/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../static/dist/bootstrap/js/bootstrap.min.js">
+
+	<!-- Custom styles for this template -->
+	<link href="../static/dist/bootstrap/css/jumbotron-narrow.css" rel="stylesheet">
+
 	<link rel="stylesheet" type="text/css" href="../static/front-end/easyui/themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../static/front-end/easyui/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="../static/front-end/easyui/demo/demo.css">
 	<script type="text/javascript" src="../static/front-end/easyui/jquery.min.js"></script>
 	<script type="text/javascript" src="../static/front-end/easyui/jquery.easyui.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
 	<script src="../static/dist/Chart.bundle.js"></script>
 	<script src="../static/dist/hammer.min.js"></script>
 	<script src="../static/dist/chartjs-plugin-zoom.js"></script>
-	<style>
-    canvas {
-        -moz-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-    }
-	</style>
 
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css" rel="stylesheet"
+		type="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
 
 </head>
-<body>
-	<h2>Trading platform</h2>
-	<div style="margin:20px 0;"></div>
-	
 
-		<div style="width:75%;">
+<body>
+
+	<div class="container">
+		<div class="header clearfix">
+			<nav>
+				<ul class="nav nav-pills pull-right">
+					<li role="presentation" class="active"><a href="#">Home</a></li>
+					<li role="presentation"><a href="#">About</a></li>
+					<li role="presentation"><a href="#">Contact</a></li>
+				</ul>
+			</nav>
+			<h3 class="text-muted">Project name</h3>
+		</div>
+
+
+		<div>
+			<h4>Market Price</h4>
+			<p><a class="btn btn-success btn-sm pull-right" role="button" onclick="resetZoom()">Reset Zoom</a></p>
+		
 		<canvas id="canvas"></canvas>
-		<a href="javascript:void(0)" class="easyui-linkbutton" onclick="resetZoom()">Reset Zoom</a>
+
+		</div>
+
+		<br/>
+		<br/>
+
+		<div class="col">
+		<div class="col-lg-6">
+		<canvas id="canvas_bar"></canvas>
+		</div>
+
+		<div class="col-lg-6">
+		<canvas id="chart-area"></canvas>
+		</div>
+		</div>
+
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+
+		<div class="row marketing">
+			<div class="row-lg-6">
+				<h4>Transaction History</h4>
+			</div>
+			<p><a class="btn btn-success btn-sm pull-right" role="button" id="btn_update" onclick="set_auto_update()">Auto Update:On</a></p>
+
+			<br/>
+			<br/>
+
+			<table id="order" class="easyui-datagrid" title="Order" style="height:250px" data-options="singleSelect:true,pageSize:100,pagination:true,collapsible:true,url:'b',method:'get',loadMsg:''">
+				<thead>
+					<tr>
+						<th data-options="field:'z',width:50">ID</th>
+						<th data-options="field:'a',width:200">Time</th>
+						<th data-options="field:'b',width:250">Result</th>
+						<th data-options="field:'c',width:60">Price</th>
+						<th data-options="field:'d',width:80">Order Size</th>
+					</tr>
+				</thead>
+			</table>
 
 		</div>
 
 
-	<!-- <table id="market" class="easyui-datagrid" title="Market" style="width:800px;height:250px" 
-			data-options="singleSelect:true,collapsible:true,url:'http://localhost:8000/a',method:'get',loadMsg:''">
-		<thead>
-			<tr>
-				<th data-options="field:'a',width:200">Time</th>
-				<th data-options="field:'b',width:220">Price</th>
-			</tr>
-		</thead>
-	</table> -->
-	
-	<br/>
-	
-	<table id="order" class="easyui-datagrid" title="Order" style="width:900px;height:250px" 
-			data-options="singleSelect:true,pagination:true,collapsible:true,url:'http://localhost:8000/b',method:'get',loadMsg:''">
-		<thead>
-			<tr>
-				<th data-options="field:'z',width:50">ID</th>
-				<th data-options="field:'a',width:200">Time</th>
-				<th data-options="field:'b',width:70">Result</th>
-				<th data-options="field:'c',width:60">Price</th>
-				<th data-options="field:'d',width:80">Order Size</th>
-				<th data-options="field:'e',width:100">Sold Num</th>
-				<th data-options="field:'f',width:100">Sold Value</th>
-				<th data-options="field:'g',width:100">Average</th>
-			</tr>
-		</thead>
-	</table>
 
-	<br/>
+		<div class="row marketing">
+			<h4>Dashboard</h4>
 
+
+
+
+		<div class="row">
+		  <div class="col-lg-6">
+			<div class="input-group">
+			  <span class="input-group-addon">
+					<label>Trading Amount</label>
+			  </span>
+			  <input type="number" id="quantity" class="form-control" aria-label="Text input with checkbox">
+			 <span class="input-group-btn">
+        <button class="btn btn-secondary disabled" id="btn_trading" type="button" onclick="place_trading()">Start</button>
+			</span>
+			</div>
+		  </div>
+
+	  </div>
+
+		<br/>
+	  
 	
-	<label class="lbInfo">Quantity: </label> 
+		<div class="row">
+	  		  <div class="col-lg-6">
+			<div class="input-group">
+			  <span class="input-group-addon">
+					<label>Server Status</label>
+			  </span>
+			 <span class="input-group-btn">
+        <button id="light_status" class="btn btn-danger" >Server Error</button>
+			</span>
+			</div>
+			</div>
+			
+		<div class="col-lg-6">
+			<div class="input-group">
+			  <span class="input-group-addon">
+					<label>Trading Status</label>
+			  </span>
+			 <span class="input-group-btn">
+        <button id="trading_status" class="btn btn-warning" >Unknown</button>
+			</span>
+			</div>
+			</div>
+	
+			
+		  </div>
+	
+	  
 
-	<input id="quantity" class="easyui-numberbox" precision="0" value="0" />
-	<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submit()">Submit</a>
-	<br>
-	<label id='record'>I'm not trading</label>
-	<br>
-	<label id='result'>No trading result yet</label>
-	<br>
-	<label id='status'>Online</label>
+		<footer class="footer">
+			<p>&copy; 2016 Company, Inc.</p>
+		</footer>
+
+	</div>
+	<!-- /container -->
+
+
 
 </body>
+
 <script type="text/javascript">
-	var timer = setInterval(myTimer, 1000);
-	var morgan_server_status = true;
-	var platform_server_status = true;
+init();
+var timer = setInterval(myTimer, 1000);
+var status = -1;
+var trading_status=0;
+var auto_update = true;
+var config_pie;
+var config_line;
+var config_bar;
 
-	//update_textbox();
-	
-	
-	function update_textbox(){
-		$.ajax({
-		type: "GET",
-		url: "http://localhost:8000/strategy",
-		data: {},
-		dataType: 'text',
-		success: function(msgResult){
-			document.getElementById('record').innerHTML = msgResult;
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown){
-		}
+function randomColorFactor() {
+	return Math.round(Math.random() * 255);
+};
+
+function randomColor() {
+	return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
+};
+
+function setup_bar_chart() {
+	    var barChartData = {
+            labels: ["Current Market Price", "Average Market Price", "Average Selling Price"],
+            datasets: [{
+                label: 'Price',
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)'],
+				borderColor: [
+				'rgba(255,99,132,1)',
+				'rgba(54, 162, 235, 1)',
+				'rgba(255, 206, 86, 1)'],				
+                data: [0,0,0]
+            }]
+
+        };
 		
-		});
+		config_bar = {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    // Elements options apply to all of the options unless overridden in a dataset
+                    // In this case, we are setting the border of each bar to be 2px wide and green
+                    elements: {
+                        rectangle: {
+                            borderWidth: 1,
+                            borderSkipped: 'bottom'
+                        }
+                    },
+                    responsive: true,
+                    legend: {
+						display: false,
+						position: "right"
+                    },
+                    title: {
+                        display: false,
+                    },
+					scales: {
+						xAxes: [{
+								display: false,
+						}],
+						yAxes: [{
+							ticks: {
+								min: 0,
+								max: 250,
+								fixedStepSize: 50,
+								fontSize:10,
+							},
+							scaleLabel: {
+								display: false,
+								labelString: 'value',
+							},
+							gridLines: {
+								display: true,
+							}
+
+						}]
+					},
+                }
+            };
+
+}
+
+function setup_pie_chart(){
+    config_pie = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+					1,
+					0,
+                ],
+                backgroundColor: [
+                    "#F7464A",
+                    "#46BFBD",
+                 ],
+            }],
+            labels: [
+                "Completed Trading",
+                "Undone Trading",
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+}
+
+function setup_line_chart(){
+    config_line = {
+        type: 'line',
+        data: {
+            labels: [], // Date Objects
+            datasets: [{
+                label: "Market Price",
+
+                data: [],
+
+                borderColor: '#F7464A',
+                backgroundColor: '#F7464A',
+
+                fill: false
+            },
+			{
+                type: 'bubble',
+                label: 'Transaction',
+                backgroundColor: "rgba(151,187,205,0.5)",
+                data: []
+			}]
+        },
+        options: {
+
+            elements: { point: { radius: 0, hitRadius: 10, hoverRadius: 1 } },
+            responsive: true,
+            title: {
+                display: true,
+                text: "Market Price"
+            },
+            pan: {
+                enabled: true,
+                mode: 'x',
+                speed: 10,
+                threshold: 10
+            },
+            zoom: {
+                enabled: true,
+                //					drag: true,
+                mode: 'x',
+                limits: {
+                    max: 10,
+                    min: 0.5
+                }
+            },
+            scales: {
+                xAxes: [{
+                    type: "time",
+
+                    time: {
+                        min: moment("00:00:00:000000", "HH:mm:ss:SSSSSS"),
+                        max: moment("09:00:00:000000", "HH:mm:ss:SSSSSS"),
+                        tooltipFormat: 'hh:mm:ss:SSS',
+                        minUnit: 'second',
+                        displayFormats: {
+
+                            second: 'hh:mm:ss'
+                        }								//,							
+                        //							unit: 'second',
+                        // round: 'day'
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date'
+                    },
+                    gridLines: {
+                        display: false,
+                    },
+                    ticks: {
+                        autoSkip: true,
+                        maxRotation: 0,
+                        minRotation: 0,
+                        maxTicksLimit: 5,
+
+                    }
+
+                }],
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        max: 250,
+                        fixedStepSize: 50
+                    },
+                    scaleLabel: {
+                        display: false,
+                        labelString: 'value',
+                    },
+                    gridLines: {
+                        display: true,
+                    }
+
+                }]
+            },
+        }
+    };
+
+
+
+    $.each(config_line.data.datasets, function (i, dataset) {
+        dataset.pointBorderWidth = 1;
+    });
+
+
+}
+
+function myTimer() {
+	updateMarketPrice();
+	get_trading_status();
+	if (auto_update)
+		$('#order').datagrid('reload');
+}
+
+function updateMarketPrice() {
+    $.ajax({
+        type: "GET",
+        url: "get_price",
+        data: {},
+        dataType: 'text',
+        success: function (msgResult) {
+
+            if (msgResult == "urlopen_error") {
+				server_status_changed(-2);
+				return;
+
+            }
+
+			if (!config_line) return;
+
+            var m = JSON.parse(msgResult);
+			
+			
+            var time = moment(m.time, "YYYY-MM-DD HH:mm:ss:SSSSSS");
+            var price = m.current_price;
+
+
+            config_line.data.datasets[0].data.push({
+                x: time,
+                y: price,
+            });
+            window.myLine.update();
+
+			config_pie.data.datasets[0].data[0]=m.sold_amount;
+			config_pie.data.datasets[0].data[1]=m.have_not_sell;
+
+
+			config_bar.data.datasets[0].data[0]=m.current_price;
+			config_bar.data.datasets[0].data[1]=m.avg_market_price;
+			config_bar.data.datasets[0].data[2]=m.current_avg;
+			
+			if (m.current_sell_price>0) {
+				config_line.data.datasets[1].data.push({
+							x: time,
+							y: m.current_sell_price,
+							r: 5,
+				});
+			}
+//			if (m.current_sell_price!=0) alert(m.current_sell_price);
+
+			window.myPie.update();
+			window.myBar.update();
+			
+			server_status_changed(1);
+
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+			server_status_changed(-1);
+        }
+
+    });
+
+}
+
+function set_auto_update()
+{
+	if (!auto_update){
+		$("#btn_update").removeClass("btn-success btn-warning btn-danger").addClass("btn-success");
+		document.getElementById('btn_update').innerHTML = "Auto Update:ON";
 	}
-
-	function update_result(){
-		$.ajax({
-		type: "GET",
-		url: "http://localhost:8000/result",
-		data: {},
-		dataType: 'text',
-		success: function(msgResult){
-			document.getElementById('result').innerHTML = msgResult;
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown){
-		}
-		
-		});
+	else {
+		$("#btn_update").removeClass("btn-success btn-warning btn-danger").addClass("btn-danger");
+		document.getElementById('btn_update').innerHTML = "Auto Update:OFF";
 	}
-	
-	
-	function myTimer() {
-		// $("#market").datagrid("reload"); 
-		$("#order").datagrid("reload"); 
-/*		
-		$.ajax({
-		type: "GET",
-		url: "http://localhost:8000/c",
-		data: {},
-		dataType: 'text',
-		success: function(msgResult){
-			var j=JSON.parse(msgResult).rows;
-			var length=j.length;
-//			for (var i=length-1;i>-1;--i){
-/*
-				$('#order').datagrid('appendRow',{'z': 'id', 'a': 'time_quote', 'b': 'result',
-                'c': 'price', 'd': 'size', 'e': 'amount',
-                'f': 'value'});
-                */
-     //            if (length>0)
-				 // $('#order').datagrid('insertRow',{index:0,row:j[0]} );
-//			}
-/*
-			$('#order').datagrid('appendRow',{
-			name: 'new name',
-			age: 30,
-			note: 'some messages'
+	auto_update=!auto_update;
+}
 
-		},
+function trading_status_changed(new_value){
+	if (new_value<0 && trading_status>0){
+		BootstrapDialog.show({
+			title: 'System message',
+			message: 'Trading Finished'
+		});			
+	}
+	if (new_value==1){
+		$("#trading_status").removeClass("btn-success btn-warning btn-danger").addClass("btn-success");
+		document.getElementById('trading_status').innerHTML = "Running";
+		$("#btn_trading").addClass("disabled");
+		document.getElementById('btn_trading').innerHTML = "Start";
+	}
+	else if (new_value==0) {
+		$("#trading_status").removeClass("btn-success btn-warning btn-danger").addClass("btn-warning");	
+		$("#btn_trading").addClass("disabled");
+		document.getElementById('trading_status').innerHTML = "Unknown";
 
-		error: function(XMLHttpRequest, textStatus, errorThrown){
-		}
-		
-		});	
+	}
+	else if (new_value==-1){
+		$("#trading_status").removeClass("btn-success btn-warning btn-danger").addClass("btn-danger");
+		document.getElementById('trading_status').innerHTML = "Stopped";
+		document.getElementById('btn_trading').innerHTML = "Start";
+	}
+	trading_status=new_value;
+
+}
+
+function server_status_changed(new_value){
+/*
+status=0 unknown
+status=1 online
+status=2 trading
+status=-1 can't connect to the server
+status -2 can't connect to the market
+*/
+	if (status==new_value) return;
+	if (status==2 && new_value==1) return;
+	if (new_value>0 && status<0){
+		BootstrapDialog.show({
+			title: 'System message',
+			message: 'Connected to the server'
+		});			
+	}
+	else if (new_value<0 && status>0) {
+		BootstrapDialog.show({
+			title: 'System message',
+			message: 'Server connection failed, Please check the server'
+		});					
+	}
+	if (new_value==1){
+		$("#light_status").removeClass("btn-success btn-warning btn-danger").addClass("btn-success");
+		$("#btn_trading").removeClass("disabled");
+		document.getElementById('light_status').innerHTML = "Online";
+//		document.getElementById('btn_trading').innerHTML = "Start";
+	}
+	else if (new_value==2) {
+/*	
+		$("#light_status").removeClass("btn-success btn-warning btn-danger").addClass("btn-success");
+		$("#btn_trading").removeClass("disabled");
+		document.getElementById('light_status').innerHTML = "Trading";
+		document.getElementById('btn_trading').innerHTML = "Stop";
 */
 	}
+	else if (new_value==-1) {
+		$("#light_status").removeClass("btn-success btn-warning btn-danger").addClass("btn-danger");	
+		$("#btn_trading").addClass("disabled");
+		document.getElementById('light_status').innerHTML = "Server Error";
 
-	
-	function submit() {
-		var value=document.getElementById("quantity").value;
-		if (value<0 || value>1000000)
-		{
-			$.messager.alert('Input rejected',"Amout out of range:[1,1000000]"); 			
-		}
-		else{
-		sendpost(document.getElementById("quantity").value);
-		update_textbox();
-		$('#order').datagrid('reload');
-		}
+	}
+	else if (new_value==-2) {
+		$("#light_status").removeClass("btn-success btn-warning btn-danger").addClass("btn-danger");
+		$("#btn_trading").addClass("disabled");
+		document.getElementById('light_status').innerHTML = "Trading Error";
+
 	}
 	
-	function success_handler(msgResult){
-			var result=msgResult;
-			if (result=="1\n") {
-					$.messager.alert('System message',"Succeeded"); 
-			  }
-				else{
-					$.messager.alert('System message',"Failed ");
-				}
-		}
-	
-	function sendpost(parameters){
-		$.ajax({
-		type: "GET",
-		url: "http://localhost:8000/submit",
-		data: {"quantity" : parameters},
-		dataType: 'text',
-		success: success_handler,
-		error: function(XMLHttpRequest, textStatus, errorThrown){
-			$.messager.alert('System message', 'Time out' + textStatus, 'info');
+	if (new_value<0) trading_status_changed(0);
+	status=new_value;
+}
+
+
+function init() {
+    $(function () {
+        var p = $('#order').datagrid('getPager');
+        $(p).pagination({
+            pageSize: 100,
+            pageList: [100],
+            beforePageText: '',
+            afterPageText: 'of {pages} pages',
+            displayMsg: '({from}-{to}) of {total} records',
+        });
+
+    });
+	setup_pie_chart();
+	setup_line_chart();
+	setup_bar_chart();
+    window.onload = function() {
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myPie = new Chart(ctx, config_pie);
+        var ctx2 = document.getElementById("canvas").getContext("2d");
+        window.myLine = new Chart(ctx2, config_line);
+        var ctx3 = document.getElementById("canvas_bar").getContext("2d");
+        window.myBar = new Chart(ctx3,config_bar);
+
+	};
+
+
+}
+
+
+function get_trading_status() {
+    $.ajax({
+        type: "GET",
+        url: "is_trading",
+        data: {},
+        dataType: 'text',
+        success: function (msgResult) {
+			if (msgResult=="1\n") {
+				trading_status_changed(1);
 			}
-		});
-	}
-
-
-
-		var timeFormat = 'h';
-
-		var timer2 = setInterval(myTimer2, 1000);
-		function myTimer2() {
-
-		update_textbox();
-		update_result();
-		$.ajax({
-		type: "GET",
-		url: "http://localhost:8000/get_price",
-		data: {},
-		dataType: 'text',
-		success: function(msgResult){
-		
-		if (msgResult=="urlopen_error")
-		{
-			document.getElementById('status').innerHTML = "Cannot connect to the stock market";			
-			return;
-
-		}
-		
-		
-		
-		var m=JSON.parse(msgResult).rows;
-		var time=moment(m.time,"YYYY-MM-DD HH:mm:ss:SSSSSS");
-		var price=m.price;
-
-		
-		config.data.datasets[0].data.push({
-				x: time,
-				y: price,
-			});				
-			window.myLine.update();
-		
-		
-		document.getElementById('status').innerHTML = "Online";
-
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown){
-			if (textStatus == 'error')
-			{
-				document.getElementById('status').innerHTML = "Cannot connect to the trading platform";
-				//morgan_server_status=false;
-				//platform_server_status=false;
+			else {
+				trading_status_changed(-1);
+//				status_changed(1);			
 			}
-		}
-		
-		});
-		
-		
-		}
-		
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+			
+        }
 
-		
-		
-		function randomScalingFactor() {
-			return Math.round(Math.random() * 100 * (Math.random() > 0.5 ? -1 : 1));
-		}
+    });	
+}
 
-		function randomColorFactor() {
-			return Math.round(Math.random() * 255);
-		}
 
-		function randomColor(opacity) {
-			return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
-		}
+function update_textbox() {
+    $.ajax({
+        type: "GET",
+        url: "strategy",
+        data: {},
+        dataType: 'text',
+        success: function (msgResult) {
+            document.getElementById('record').innerHTML = msgResult;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+        }
 
-		function newDate(seconds) {
-			return moment().add(seconds, 's').toDate();
-		}
+    });
+}
 
-		function newDateString(seconds) {
-//			var minutes = Math.round(Math.random() * 60);
-			return moment().add(seconds, 's');
-		}
+function place_trading() {
+	if (status<0) return;
 
-		
-		
-		function newTimestamp(days) {
-			return moment().add(days, 'h').unix();
-		}
-
-		function resetZoom() {
-			window.myLine.resetZoom()
-		}
-		
-		var config = {
-			type: 'line',
-			data: {
-				labels: [], // Date Objects
-				datasets: [{
-					label: "Market Price",
-
-					data: [],
-
-					borderColor: 'rgba(255, 0, 0, 0.7)',
-					backgroundColor: 'rgba(0, 0, 0, 0)',
-
-					fill: false
-				}]
-			},
-			options: {
-
-				elements: { point: { radius: 0, hitRadius: 10, hoverRadius: 1 }},
-				responsive: true,
-                title:{
-                    display:true,
-                    text:"Market Price"
-                },
-				pan: {
-					enabled: true,
-					mode: 'x',
-					speed: 10,
-					threshold: 10
-				},
-				zoom: {
-					enabled: true,
-//					drag: true,
-					mode: 'x',
-					limits: {
-						max: 10,
-						min: 0.5
+    var value = document.getElementById("quantity").value;
+    if (value < 0 || value > 1000000) {
+	    BootstrapDialog.show({
+            title: 'Input rejected',
+            message: 'Amout out of range:[1,1000000]'
+        });
+    }
+    else {
+		if (trading_status==-1) {
+			$.ajax({
+				type: "GET",
+				url: "http://160.39.141.95:8000/submit",
+				data: { "quantity": document.getElementById("quantity").value },
+				dataType: 'text',
+				success: function (msgResult){
+					var result = msgResult;
+					if (result == "1\n") {
+						BootstrapDialog.show({
+										title: 'System message',
+										message: 'Succeeded'
+									});
 					}
-				},			
-				scales: {
-					xAxes: [{
-					type: "time",
+					else {
+						BootstrapDialog.show({
+										title: 'System message',
+										message: 'Failed'
+									});
 
-						time: {
-						min: moment("00:00:00:000000","HH:mm:ss:SSSSSS"),
-                        max: moment("09:00:00:000000","HH:mm:ss:SSSSSS"),						
-						tooltipFormat: 'hh:mm:ss:SSS',
-						minUnit:'second',	
-						displayFormats: {
-
-									second: 'hh:mm:ss'
-								}								//,							
-//							unit: 'second',
-							// round: 'day'
-						},
-						scaleLabel: {
-							display: true,
-							labelString: 'Date'
-						},
-						gridLines: {
-							display: false,
-						},
-						ticks: {
-							autoSkip: true,
-							maxRotation: 0,
-							minRotation: 0,
-							maxTicksLimit:10,
-
-						}
-
-					} ],
-					yAxes: [{
-                        ticks: {
-                            min: 0,
-                            max: 250,
-                            fixedStepSize:50
-                        },
-						scaleLabel: {
-							display: true,
-							labelString: 'value',
-						},
-						gridLines: {
-							display: true,
-						}
-
-					}]
+					}					
 				},
-			}
-		};
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+				BootstrapDialog.show({
+					title: 'System message',
+					message: 'Time out' + textStatus
+				});			
+				}
+			});
+		}
+		else {
+		/*
+			$.ajax({
+				type: "GET",
+				url: "http://160.39.141.95:8000/stop_trading",
+				data: { "quantity": document.getElementById("quantity").value },
+				dataType: 'text',
+				success: function(msgResult){
+					if (msgResult=="1\n"){
+						BootstrapDialog.show({
+							title: 'System message',
+							message: 'Stopped Trading'
+						});
+						trading_status_changed(-1);
+					}
+					else {
+						BootstrapDialog.show({
+							title: 'System message',
+							message: 'Cannot Stop Trading'
+						});							
 
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+				BootstrapDialog.show({
+					title: 'System message',
+					message: 'Time out' + textStatus
+				});			
+				}
+			});
 		
-		
-		$.each(config.data.datasets, function(i, dataset) {
-			// dataset.borderColor = randomColor(0.4);
-			// dataset.backgroundColor = randomColor(0.5);
-			// dataset.pointBorderColor = randomColor(0.7);
-			// dataset.pointBackgroundColor = randomColor(0.5);
-			dataset.pointBorderWidth = 1;
-		});
+		}
+		*/
+//        update_textbox();
+		}
+	}
+}
 
-		window.onload = function() {
-			var ctx = document.getElementById("canvas").getContext("2d");
-			window.myLine = new Chart(ctx, config);
 
-			
-			
-		};
+
+function resetZoom() {
+    window.myLine.resetZoom()
+}
 
 	
 </script>
+
 </html>

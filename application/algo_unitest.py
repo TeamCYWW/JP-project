@@ -1,5 +1,7 @@
 import unittest
 from Algorithm import UseThread
+import psycopg2
+
 
 
 class WidgetTestCase(unittest.TestCase):
@@ -24,11 +26,23 @@ class WidgetTestCase(unittest.TestCase):
         print "connect to database"
         return connection
 
-    def test_database(self):
+    def test_database_clean(self):
         connection = self.set_up()
         cursor = connection.cursor()
         self.instance.database_cleanup(connection, cursor)
-        # self.instance.insert_info()
+        print "database cleaned"
+
+    def test_database_insert(self):
+        conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
+        print conn
+        cursor = conn.cursor()
+        a = cursor.execute("""SELECT count(*) FROM user_info;""")
+        print a
+        for row in a:
+            print row
+
+        sell_info = {'trans_id': 1, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0}
+        # self.instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, connection, cursor)
 
 
 if __name__ == '__main__':

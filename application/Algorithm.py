@@ -22,10 +22,22 @@ class UseThread(threading.Thread):
         """
         threading.Thread.__init__(self)
         self.quantity = quantity
+        # self.exit_flag = False
+        # self._stop = threading.Event()
 
-    @staticmethod
-    def exit():
-        return "Stop"
+    # def stop(self):
+    #     self._stop.set()
+    #
+    # def stopped(self):
+    #     return self._stop.isSet()
+    #
+    # def exit(self):
+    #     self.exit_flag = True
+    #     return "Stop"
+    #
+    # @staticmethod
+    # def is_run():
+    #     return True
 
     @staticmethod
     def cal_current_time(cur_time):
@@ -136,8 +148,9 @@ class UseThread(threading.Thread):
         try:
             cur.execute(query)
             connection.commit()
-        except Exception:
+        except Exception as info:
             print "Can't insert data into market information form"
+            print info
             connection.rollback()
 
     @staticmethod
@@ -160,16 +173,14 @@ class UseThread(threading.Thread):
             time_stamp = ""
             price = ""
             size = ""
-            avg = ""
         else:
             time_stamp = order_info['timestamp']
             price = order_info['avg_price']
             size = order_info['qty']
-            avg = sell_info['avg']
-        query = "INSERT INTO transact (id, time_quote, result, price, size, amount, value, avgr) " \
-                "VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}');". \
+        query = "INSERT INTO transact (id, time_quote, result, price, size, amount, value, avgr, total) " \
+                "VALUES ('{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}');". \
             format(db_id, time_stamp, result, price, size,
-                   sell_info['total_sell'], sell_info['sum_value'], avg)
+                   sell_info['total_sell'], sell_info['sum_value'], sell_info['avg'], sell_info['plan_value'])
         # print query
         count = 0
         while db_id == sell_info['trans_id'] and count < 10:
@@ -257,7 +268,7 @@ class UseThread(threading.Thread):
         self.database_cleanup(conn, cur)
 
         # info_id = 0
-        sell_info = {'trans_id': 1, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0}
+        sell_info = {'trans_id': 1, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0, 'plan_value': int(self.quantity)}
         time_wait = 0
 
         while inventory > 0:
@@ -325,7 +336,7 @@ class UseThread(threading.Thread):
             avg_price = 0
         print avg_price
         result_order = "Finished with average price " + str(avg_price)
-        # sell_info['trans_id'] = self.insert_trans(sell_info, result_order, None, cur, conn)
+        sell_info['trans_id'] = self.insert_trans(sell_info, result_order, None, cur, conn)
         cur.close()
         conn.close()
         return result_order

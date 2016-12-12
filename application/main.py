@@ -22,6 +22,10 @@ import sys
 
 num_request = 0
 new_thread = None
+last_request_num = 0
+total_value_of_market = 0
+total_num_of_get_price = 0
+
 trade_result = "No result yet"
 APP = Flask(__name__)
 APP._static_folder = "./static"
@@ -201,13 +205,61 @@ def get_price():
 
     """
     query = "http://localhost:8080/query?id={}"
+    global total_num_of_get_price
+    global total_value_of_market
+    global last_request_num
+
+    try:
+        curs1 = g.conn.execute("""SELECT count(*) FROM transact;""")
+    except Exception as info:
+        print info
+        return "database not available"
+    length = 0
+    for row in curs1:
+        length = row[0]
+    curs1.close()
+
+    # print "This is last_requst_num",
+    # print last_request_num
+    # print " this is length",
+    # print length
+    trading = False
+    if last_request_num != length:
+        last_request_num = length
+        trading = True
+
+    try:
+        curs2 = g.conn.execute("""SELECT * FROM transact WHERE id = '{}';""".format(length))
+    except Exception as info:
+        print info
+        return "database not available2"
+    plan_value = have_sold = current_avg = cur_sell_price = 0
+    for result in curs2:
+        if result['result'] == "success":
+            plan_value = int(result['total'])
+            have_sold = int(result['amount'])
+            current_avg = float(result['avgr'])
+            cur_sell_price = float(result['price'])
+    curs2.close()
+    not_sell_amount = plan_value - have_sold
+
+    # print is_trading
+    if trading:
+        pass
+    else:
+        cur_sell_price = 0
+
     try:
         quote = json.loads(urllib2.urlopen(query.format(1.01)).read())
         price = float(quote['top_bid']['price'])
         time_mark = str(quote['timestamp'])
-        print "Quoted at {} , time is {} ".format(price, time_mark)
-        info = {'time': time_mark, 'price': price}
-        return jsonify(rows=info)
+        total_value_of_market += price
+        total_num_of_get_price += 1
+        avg = total_value_of_market / total_num_of_get_price
+        info = {'time': time_mark, 'current_price': price, 'current_sell_price': cur_sell_price,
+                'avg_market_price': avg, 'have_not_sell': not_sell_amount,
+                'sold_amount': have_sold, 'current_avg': current_avg}
+        return json.dumps(info)
     except Exception as info:
         print info
         return "urlopen_error"
@@ -241,8 +293,6 @@ def handle_b():
     handle request of getting transaction history
 
     """
-    global num_request
-    num_request = 0
 
     page = request.args.get('page', 0, type=int)
     rows = request.args.get('rows', 0, type=int)
@@ -257,7 +307,6 @@ def handle_b():
     length = 0
     for row in curs1:
         length = row[0]
-        print length
     curs1.close()
 
     start = length - (page - 1) * rows
@@ -279,26 +328,26 @@ def handle_b():
     return json.dumps(total)
 
 
-@APP.route("/c")
-@crossdomain(origin='*')
-def handle_c():
-    global num_request
-
-    try:
-        newcurs = g.conn.execute("""Select * from (SELECT * FROM transact where id >
-        '{}') as foo order by id;""".format(num_request))
-    except Exception as info:
-        print "can not read record from database"
-        return str(info)
-    info = []
-    for result in newcurs:
-        temp = {'z': result['id'], 'a': result['time_quote'], 'b': result['result'],
-                'c': result['price'], 'd': result['size'], 'e': result['amount'],
-                'f': result['value']}
-        info.insert(0, temp)
-        num_request += 1
-    newcurs.close()
-    return jsonify(rows=info)
+# @APP.route("/c")
+# @crossdomain(origin='*')
+# def handle_c():
+#     global num_request
+#
+#     try:
+#         newcurs = g.conn.execute("""Select * from (SELECT * FROM transact where id >
+#         '{}') as foo order by id;""".format(num_request))
+#     except Exception as info:
+#         print "can not read record from database"
+#         return str(info)
+#     info = []
+#     for result in newcurs:
+#         temp = {'z': result['id'], 'a': result['time_quote'], 'b': result['result'],
+#                 'c': result['price'], 'd': result['size'], 'e': result['amount'],
+#                 'f': result['value']}
+#         info.insert(0, temp)
+#         num_request += 1
+#     newcurs.close()
+#     return jsonify(rows=info)
 
 
 @APP.route("/submit", methods=['GET'])
@@ -308,12 +357,12 @@ def handle_submit():
     handle request of start an order
 
     """
-    global num_request
     global new_thread
+
     if new_thread is not None:
-        new_thread.exit()
-    num_request = 0
-    lang = request.args.get('quantity', 0, type=float)
+        return "2\n"
+    new_thread = None
+    lang = request.args.get('quantity', 0, type=int)
     new_thread = UseThread(lang)
     new_thread.setDaemon(True)
     new_thread.start()
@@ -321,53 +370,66 @@ def handle_submit():
     return "1\n"
 
 
-@APP.route("/strategy", methods=['GET'])
+# @APP.route("/stop_trading", methods=['GET'])
+# @crossdomain(origin='*')
+# def stop_trade():
+#     """
+#     handle request of start an order
+#
+#     """
+#     global new_thread
+#
+#     if new_thread is None:
+#         return "2\n"
+#     else:
+#         if new_thread.is_run():
+#             print "Try to exit it is alive"
+#             new_thread.stop()
+#             new_thread.join(10)
+#             new_thread = None
+#             return "1\n"
+#         else:
+#             print "Not alive anyway"
+#             new_thread.stop()
+#             new_thread.join(10)
+#             new_thread = None
+#             return "1\n"
+
+
+@APP.route("/is_trading", methods=['GET'])
 @crossdomain(origin='*')
-def strategy():
+def is_trading():
     """
     show user how the strategy of trading is being calculated
 
     """
     global new_thread
-    # print new_thread
+
     if new_thread is None:
-        return "I'm not trading"
+        return "2\n"
     else:
-        return "Doing trading"
+        if new_thread.isAlive():
+            print('Still running')
+            return "1\n"
+        else:
+            print('Completed')
+            new_thread = None
+            return "2\n"
 
 
-@APP.route("/result", methods=['GET'])
-@crossdomain(origin='*')
-def trade_res():
-    """
-    show user how the strategy of trading is being calculated
-
-    """
-    global trade_result
-    global new_thread
-    if new_thread is not None:
-        trade_result = new_thread.join()
-        print trade_result
-        print "O0000000"
-        new_thread = None
-    else:
-        trade_result = "No trading started yet"
-    return trade_result
-
-
-@APP.route("/lookup")
-@crossdomain(origin='*')
-def lookup():
-    try:
-        newcurs = g.conn.execute("""Select * from user_info;""")
-    except Exception as info:
-        print "can not read record from database"
-        return str(info)
-    print "I'm looking up for user..."
-    for result in newcurs:
-        print result
-    newcurs.close()
-    return "1\n"
+# @APP.route("/lookup")
+# @crossdomain(origin='*')
+# def lookup():
+#     try:
+#         newcurs = g.conn.execute("""Select * from user_info;""")
+#     except Exception as info:
+#         print "can not read record from database"
+#         return str(info)
+#     print "I'm looking up for user..."
+#     for result in newcurs:
+#         print result
+#     newcurs.close()
+#     return "1\n"
 
 
 @APP.route("/register", methods=['POST'])
@@ -446,6 +508,7 @@ def login():
     newcurs.close()
     return "2\n"
 
+
 if __name__ == "__main__":
     # check whether the file is called directly, otherwise do not run
     original_sigint = signal.getsignal(signal.SIGINT)
@@ -453,4 +516,4 @@ if __name__ == "__main__":
     # reload(sys)
     # sys.setdefaultencoding('utf8')
 
-    APP.run(port=8000, threaded=True)
+    APP.run(host='0.0.0.0', port=8000, threaded=True)

@@ -12,7 +12,8 @@ price VARCHAR(30),
 size VARCHAR(30),
 amount INT,
 value double precision,
-avgr double precision);
+avgr double precision,
+total INT);
 
 
 CREATE TABLE strat(
