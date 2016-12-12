@@ -178,6 +178,7 @@ var auto_update = true;
 var config_pie;
 var config_line;
 var config_bar;
+var late = false;
 
 function randomColorFactor() {
 	return Math.round(Math.random() * 255);
@@ -390,7 +391,7 @@ function myTimer() {
 }
 
 function updateMarketPrice() {
-    $.ajax({
+     $.ajax({
         type: "GET",
         url: "get_price",
         data: {},
@@ -409,6 +410,7 @@ function updateMarketPrice() {
 			
 			
             var time = moment(m.time, "YYYY-MM-DD HH:mm:ss:SSSSSS");
+			if (time.hours>=8) late=true;
             var price = m.current_price;
 
 
@@ -418,13 +420,20 @@ function updateMarketPrice() {
             });
             window.myLine.update();
 
+			if (m.sold_amount>0 || m.sold_amount>0) {
 			config_pie.data.datasets[0].data[0]=m.sold_amount;
 			config_pie.data.datasets[0].data[1]=m.have_not_sell;
+			}
+			else {
+				config_pie.data.datasets[0].data[0]=1;
+				config_pie.data.datasets[0].data[1]=0;
 
+			}
 
 			config_bar.data.datasets[0].data[0]=m.current_price;
 			config_bar.data.datasets[0].data[1]=m.avg_market_price;
-			config_bar.data.datasets[0].data[2]=m.current_avg;
+			if (m.current_avg>0)
+				config_bar.data.datasets[0].data[2]=m.current_avg;
 			
 			if (m.current_sell_price>0) {
 				config_line.data.datasets[1].data.push({
@@ -623,9 +632,15 @@ function place_trading() {
     }
     else {
 		if (trading_status==-1) {
+			if (late==true){
+						BootstrapDialog.show({
+										title: 'System message',
+										message: 'Too late to make a trading'
+									});			
+			}
 			$.ajax({
 				type: "GET",
-				url: "http://160.39.141.95:8000/submit",
+				url: "submit",
 				data: { "quantity": document.getElementById("quantity").value },
 				dataType: 'text',
 				success: function (msgResult){
