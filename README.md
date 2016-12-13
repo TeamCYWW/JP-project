@@ -23,3 +23,6 @@ Development framework: Flask
 Other technologies: PostgreSQL, HTML, CSS
 
 script and testcase in file named testfile
+
+First Iteration Taskboard: https://trello.com/b/idOLYcHs/first-iteration
+Second Iteration Taskboard: https://trello.com/b/hnHr3qKM/second-iteration
