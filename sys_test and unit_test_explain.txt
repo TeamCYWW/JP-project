@@ -1,4 +1,4 @@
-In addition to Sys test, here are reson for not being 100% in unit test:   
+In addition to Sys test, here are reasons for not being 100% in unit test:   
 In main.py, these lines are unavailable:  
 except Exception as info: 
         print info 
@@ -8,8 +8,19 @@ except Exception as info:
         print "can not read record from database" 
         return str(info)
 
-The reason we cannot reach them is that the database exception are tested before that. So if the database has connection probelm, these two exceptino will not be occured.  
+The reason we cannot reach them is that the database exception are tested before that. So if the database has connection problem, these two exception will not be occured.  
 
+In Algorithm.py, these lines are unavailable: 
+if order is None: 
+                    sell_info['trans_id'] = self.insert_trans( 
+                        sell_info, "failure occurred, recalculate strategy", None, cur, conn) 
+ 
+                    market_info = self.quote_info() 
+                    current_time = self.cal_current_time(market_info['timestamp']) 
+                    if order_size > 10: 
+                        order_size -= 10 
+
+The reason we cannot reach them is because this case is inside of the main logic of the algorithm. The case that order will be None is only occurred when the execute order method fail. But for the main logic to run, we cannot make some fake server that work at beginning but fail in the middle. Thus we are not able to cover this part.
 
 
 This is log for system test:

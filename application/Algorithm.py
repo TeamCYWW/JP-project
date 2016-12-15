@@ -197,10 +197,9 @@ class UseThread(threading.Thread):
         try:
             order_price = float(market_info['top_bid']['price']) * (100 - order_discount) * 0.01
             order_args = (order_size, order_price)
-            print order_args
             url = order_query.format(2, *order_args)
             order = json.loads(urllib2.urlopen(url).read())
-            print order
+            # print order
         except Exception:
             print "price or order size too high"
             order = None
@@ -274,8 +273,8 @@ class UseThread(threading.Thread):
             if time_interval < 2:
                 order_discount += 1
                 order_size += 50
-            print "This is interval time: ",
-            print time_interval
+            # print "This is interval time: ",
+            # print time_interval
             time_wait = current_time + time_interval
             # print "This is wait time: ",
             # print time_wait
