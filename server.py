@@ -272,7 +272,7 @@ class App(object):
             'price', 'qty', and 'side'.
         """
         t, bids, asks = self._current_book.next()
-        print 'Order received @ t%s for %s' % (t, x)
+        # print 'Order received @ t%s for %s' % (t, x)
         size, px = float(x['qty']), float(x['price'])
         side     = 'buy' if x['side'] == 'sell' else 'sell'
         result   = clear_order(px, size, self._book[side], ops[side])

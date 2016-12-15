@@ -285,7 +285,7 @@ class AlgoTestCase(unittest.TestCase):
         self.instance.run()
         self.instance = Algorithm.UseThread(30)
         self.instance.run()
-        self.instance = Algorithm.UseThread(10000000)
+        self.instance = Algorithm.UseThread(1000000)
         self.instance.run()
 
 if __name__ == '__main__':
