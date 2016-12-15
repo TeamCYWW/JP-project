@@ -1,23 +1,13 @@
 import main
-import unittest
+# import unittest
 import signal
 import unittest
 from Algorithm import UseThread
-import sys
-import psycopg2
+# import psycopg2
 
 
-class FlaskrTestCase(unittest.TestCase):
+class WrongTestCase(unittest.TestCase):
     def setUp(self):
-        # DATABASEURI = "postgresql://Linnan@localhost:5432/stock"
-        # ENGINE = create_engine(DATABASEURI)
-        # try:
-        #     self.a = ENGINE.connect()
-        # except Exception:
-        #     assert "uh oh, problem connecting to database"
-        #     # traceback.print_exc()
-        #     self.a = None
-        # print self.a
         self.app = main.APP.test_client()
 
     def tearDown(self):
@@ -27,8 +17,52 @@ class FlaskrTestCase(unittest.TestCase):
         # except Exception as e:
         #     print "No open database to close"
 
+    def test_before_request_wrong(self):
+        with main.APP.test_request_context():
+            main.ENGINE = "some wrong request"
+            main.before_request()
+
+    def test_get_price(self):
+        rv = self.app.get('/get_price')
+        print "successfully get test"
+
+    def test_b(self):
+        rv = self.app.get('/b')
+        print "successfully b"
+
+    def test_submit(self):
+        with main.APP.test_request_context():
+            main.new_thread = "some thing"
+            main.handle_submit()
+
+    def test_is_trading(self):
+        rv = self.app.get('/is_trading')
+        assert rv is not None
+        print "sccessfully get trading status"
+
+
+class FlaskrTestCase(unittest.TestCase):
+    def setUp(self):
+        self.app = main.APP.test_client()
+
+    def tearDown(self):
+        print "done"
+        # try:
+        #     self.a.close()
+        # except Exception as e:
+        #     print "No open database to close"
+
+    # def test_before_request_wrong(self):
+    #     with main.APP.test_request_context():
+    #         main.ENGINE = "some wrong request"
+    #         main.before_request()
+
     def test_empty_db(self):
         rv = self.app.get('/')
+        print "access log page"
+
+    def test_index(self):
+        rv = self.app.get('/index')
         print "access main page"
 
     def register(self, username, password):
@@ -106,8 +140,12 @@ class FlaskrTestCase(unittest.TestCase):
         print "delete user data"
 
     def test_exit(self):
-        original_sigint = signal.getsignal(signal.SIGINT)
-        signal.signal(signal.SIGINT, main.exit_gracefully)
+        try:
+            main.original_sigint = signal.getsignal(signal.SIGINT)
+            signal.signal(signal.SIGINT, main.exit_gracefully(1,2))
+            main.get_price()
+        except SystemExit:
+            print "pass exit test"
 
     def test_crossdomain(self):
         rv = main.crossdomain(1,["asd","asdfaw",[32,12]],3,4,5,6)
@@ -116,6 +154,17 @@ class FlaskrTestCase(unittest.TestCase):
         rv = self.app.get('/reg')
         assert rv is not None
         print "sccessfully get regpage"
+
+    def test_submit(self):
+        rv = self.app.get('/submit?quantity=10')
+        assert rv is not None
+        print "sccessfully get submit"
+
+    def test_is_trading(self):
+        rv = self.app.get('/is_trading')
+        assert rv is not None
+        print "sccessfully get trading status"
+
 
 class TestCase(unittest.TestCase):
     def setUp(self):
@@ -162,7 +211,7 @@ class TestCase(unittest.TestCase):
         for row in cursor:
             row_count += 1
             print "row: %s    %s\n" % (row_count, row)
-        sell_info = {'trans_id': 1, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0, 'plan_value': 10000}
+        sell_info = {'trans_id': 12, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0, 'plan_value': 10000}
         self.instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, cursor, conn)
         try:
             self.instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, None, conn)

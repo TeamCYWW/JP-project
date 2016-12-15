@@ -2,13 +2,8 @@
 This is server, run this file when use
 """
 
-# import os
-# import traceback
-# import random
-
 import json
 import urllib2
-from datetime import timedelta
 from functools import update_wrapper
 from sqlalchemy import create_engine
 import psycopg2
@@ -19,7 +14,6 @@ from Algorithm import UseThread
 import signal
 import sys
 
-num_request = 0
 new_thread = None
 last_request_num = 0
 total_value_of_market = 0
@@ -47,15 +41,12 @@ def exit_gracefully(signum, frame):
     # restore the original signal handler as otherwise evil things will happen
     # in raw_input when CTRL+C is pressed, and our signal handler is not re-entrant
     signal.signal(signal.SIGINT, original_sigint)
-    try:
-        print("\nUser ask for exiting")
-        sys.exit(1)
 
-    except KeyboardInterrupt:
-        print("\nOK, quitting")
-        sys.exit(1)
-        # restore the exit gracefully handler here
-        # signal.signal(signal.SIGINT, exit_gracefully)
+    print("\nUser ask for exiting")
+    sys.exit(1)
+
+    # restore the exit gracefully handler here
+    # signal.signal(signal.SIGINT, exit_gracefully)
 
 
 def crossdomain(origin=None, methods=None, headers=None,
@@ -207,8 +198,10 @@ def get_price():
     global total_num_of_get_price
     global total_value_of_market
     global last_request_num
+    print last_request_num
 
     try:
+        print g
         curs1 = g.conn.execute("""SELECT count(*) FROM transact;""")
     except Exception as info:
         print info
@@ -218,10 +211,6 @@ def get_price():
         length = row[0]
     curs1.close()
 
-    # print "This is last_requst_num",
-    # print last_request_num
-    # print " this is length",
-    # print length
     trading = False
     if last_request_num != length:
         last_request_num = length
