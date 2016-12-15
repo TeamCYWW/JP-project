@@ -2,7 +2,6 @@ import unittest
 import main
 import signal
 
-
 class MyTest(unittest.TestCase):
 
     # def setUp(self):

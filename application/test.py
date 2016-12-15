@@ -1,9 +1,22 @@
 import main
-# import unittest
+import threading
+import time
 import signal
 import unittest
 from Algorithm import UseThread
-# import psycopg2
+import psycopg2
+
+
+class TestThread(threading.Thread):
+    def __init__(self):
+        """
+        class initiator
+        """
+        threading.Thread.__init__(self)
+
+    def run(self):
+        time.sleep(2)
+        print "finish thread"
 
 
 class WrongTestCase(unittest.TestCase):
@@ -21,9 +34,11 @@ class WrongTestCase(unittest.TestCase):
         with main.APP.test_request_context():
             main.ENGINE = "some wrong request"
             main.before_request()
+            main.handle_b()
 
     def test_get_price(self):
         rv = self.app.get('/get_price')
+        self.app.get('/get_price')
         print "successfully get test"
 
     def test_b(self):
@@ -32,13 +47,35 @@ class WrongTestCase(unittest.TestCase):
 
     def test_submit(self):
         with main.APP.test_request_context():
-            main.new_thread = "some thing"
+            main.new_thread = TestThread()
+            main.new_thread.start()
+            print "Print if thread is alive: ",
+            print main.new_thread.isAlive()
+            main.is_trading()
             main.handle_submit()
 
     def test_is_trading(self):
         rv = self.app.get('/is_trading')
         assert rv is not None
         print "sccessfully get trading status"
+
+    def test_wrong_reg(self):
+        with main.APP.test_request_context():
+            main.data_config = "some wrong request"
+            self.app.post('/register', data=dict(username="asdf", password="asdf"))
+            print "pass test to wrong register"
+
+    def test_wrong_del(self):
+        with main.APP.test_request_context():
+            main.data_config = "some wrong request"
+            self.app.post('/del_user', data=dict(username="asdf"))
+            print "pass test to wrong register"
+
+    def test_wrong_login(self):
+        self.app.post('/login', data=dict(
+            username="dakfjl",
+            password="qeoij"))
+        print "pass test wrong login"
 
 
 class FlaskrTestCase(unittest.TestCase):
@@ -125,6 +162,12 @@ class FlaskrTestCase(unittest.TestCase):
         assert '1' in rv.data
 
     def test_del_b(self):
+        conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO transact (id, time_quote, result, price, size, amount, "
+                       "value, avgr, total) VALUES ('2', 'time', 'success', "
+                       "'100', '19', '5', '23', '123', '19');")
+        conn.commit()
         print "Im testing history"
         rv = self.app.get('/b', data=dict(
             page='1', row='10'

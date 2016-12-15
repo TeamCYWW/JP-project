@@ -22,22 +22,6 @@ class UseThread(threading.Thread):
         """
         threading.Thread.__init__(self)
         self.quantity = quantity
-        # self.exit_flag = False
-        # self._stop = threading.Event()
-
-    # def stop(self):
-    #     self._stop.set()
-    #
-    # def stopped(self):
-    #     return self._stop.isSet()
-    #
-    # def exit(self):
-    #     self.exit_flag = True
-    #     return "Stop"
-    #
-    # @staticmethod
-    # def is_run():
-    #     return True
 
     @staticmethod
     def cal_current_time(cur_time):

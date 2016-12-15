@@ -24,6 +24,7 @@ APP = Flask(__name__)
 APP._static_folder = "./static"
 
 DATABASEURI = "postgresql://postgres@localhost:5432/stock"
+data_config = "dbname='stock' user='postgres' host='localhost' password='' "
 ENGINE = create_engine(DATABASEURI)
 
 
@@ -79,8 +80,8 @@ def crossdomain(origin=None, methods=None, headers=None,
         return http method if it is not None
 
         """
-        if methods is not None:
-            return methods
+        # if methods is not None:
+        #     return methods
 
         options_resp = current_app.make_default_options_response()
         return options_resp.headers['allow']
@@ -103,12 +104,12 @@ def crossdomain(origin=None, methods=None, headers=None,
                 kwargs
 
             """
-            if automatic_options and request.method == 'OPTIONS':
-                resp = current_app.make_default_options_response()
-            else:
-                resp = make_response(func(*args, **kwargs))
-            if not attach_to_all and request.method != 'OPTIONS':
-                return resp
+            # if automatic_options and request.method == 'OPTIONS':
+            #     resp = current_app.make_default_options_response()
+            # else:
+            resp = make_response(func(*args, **kwargs))
+            # if not attach_to_all and request.method != 'OPTIONS':
+            #     return resp
 
             head = resp.headers
             head['Access-Control-Allow-Origin'] = origin
@@ -117,8 +118,8 @@ def crossdomain(origin=None, methods=None, headers=None,
             head['Access-Control-Allow-Credentials'] = 'true'
             head['Access-Control-Allow-Headers'] = \
                 "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-            if headers is not None:
-                head['Access-Control-Allow-Headers'] = headers
+            # if headers is not None:
+            #     head['Access-Control-Allow-Headers'] = headers
             return resp
 
         func.provide_automatic_options = False
@@ -411,7 +412,7 @@ def register():
     pw_hash = generate_password_hash(password)
     conn = "database"
     try:
-        conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
+        conn = psycopg2.connect(data_config)
         cur = conn.cursor()
         query = "INSERT INTO user_info (name, pass) VALUES ('{}', '{}');".format(username, pw_hash)
         cur.execute(query)
@@ -420,7 +421,7 @@ def register():
         conn.close()
     except Exception as info:
         print str(info)
-        conn.rollback()
+        # conn.rollback()
         print "can not write record to database"
         return str(info)
 
@@ -437,7 +438,7 @@ def del_user():
     username = request.form['username']
     conn = "database"
     try:
-        conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
+        conn = psycopg2.connect(data_config)
         cur = conn.cursor()
         query = "DELETE FROM user_info WHERE name='{}';".format(username)
         cur.execute(query)
@@ -445,7 +446,7 @@ def del_user():
         cur.close()
         conn.close()
     except Exception as info:
-        conn.rollback()
+        # conn.rollback()
         print "can not write record to database"
         print str(info)
         return str(info)
