@@ -10,6 +10,9 @@ import json
 import threading
 import psycopg2
 
+quote_query = "http://localhost:8080/query?id={}"
+db_link = "dbname='stock' user='postgres' host='localhost' password='' "
+
 
 class UseThread(threading.Thread):
     """
@@ -80,7 +83,7 @@ class UseThread(threading.Thread):
             database connection object
         """
         try:
-            conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
+            conn = psycopg2.connect(db_link)
             print 'get connect'
         except Exception:
             print "I am unable to connect to the database"
@@ -164,12 +167,12 @@ class UseThread(threading.Thread):
         Returns:
             JSON object of market information
         """
-        query = "http://localhost:8080/query?id={}"
+        global quote_query
         quote = None
         count = 0
         while quote is None and count <= 5:
             try:
-                quote = json.loads(urllib2.urlopen(query.format(1)).read())
+                quote = json.loads(urllib2.urlopen(quote_query.format(1)).read())
             except Exception:
                 print "Server error"
                 count += 1

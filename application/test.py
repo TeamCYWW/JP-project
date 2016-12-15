@@ -3,8 +3,8 @@ import threading
 import time
 import signal
 import unittest
-from Algorithm import UseThread
 import psycopg2
+import Algorithm
 
 
 class TestThread(threading.Thread):
@@ -154,16 +154,6 @@ class FlaskrTestCase(unittest.TestCase):
             print "bad query test for get_price"
 
     def test_del_b(self):
-        instance = UseThread(10)
-
-        conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
-        cursor = conn.cursor()
-        sell_info = {'trans_id': 12, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0, 'plan_value': 10000}
-        instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, cursor, conn)
-        cursor.execute("INSERT INTO transact (id, time_quote, result, price, size, amount, "
-                       "value, avgr, total) VALUES ('2', 'time', 'success', "
-                       "'100', '19', '5', '23', '123', '19');")
-        conn.commit()
         print "I'm testing history"
         rv = self.app.get('/b', data=dict(
             page='1', row='10'
@@ -204,9 +194,29 @@ class FlaskrTestCase(unittest.TestCase):
         print "sccessfully get trading status"
 
 
-class TestCase(unittest.TestCase):
+class AlgoTestToFail(unittest.TestCase):
     def setUp(self):
-        self.instance = UseThread(10)
+        self.instance = Algorithm.UseThread(10)
+
+    def tearDown(self):
+        self.instance = None
+
+    def test_quote_fail(self):
+        Algorithm.quote_query = "some wrong query {}"
+        try:
+            Algorithm.UseThread.quote_info()
+        except SystemExit:
+            print "successfully test quote_info method"
+
+    def test_db_fail(self):
+        Algorithm.db_link = "some wrong db link"
+        self.assertEqual(Algorithm.UseThread.connect_database(), 1)
+        print "successfully test connect_database method fail"
+
+
+class AlgoTestCase(unittest.TestCase):
+    def setUp(self):
+        self.instance = Algorithm.UseThread(10)
 
     def tearDown(self):
         self.instance = None
@@ -271,9 +281,11 @@ class TestCase(unittest.TestCase):
 
     def test_run(self):
         self.instance.run()
-        self.instance = UseThread(30)
+        self.instance = Algorithm.UseThread(0)
         self.instance.run()
-        self.instance = UseThread(0)
+        self.instance = Algorithm.UseThread(30)
+        self.instance.run()
+        self.instance = Algorithm.UseThread(10000000)
         self.instance.run()
 
 if __name__ == '__main__':

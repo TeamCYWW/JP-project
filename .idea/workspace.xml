@@ -4,13 +4,13 @@
     <list default="true" id="6b7a9da3-2376-46ef-babf-a414d58fcd7d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/.coverage" afterPath="$PROJECT_DIR$/application/.coverage" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/Algorithm.py" afterPath="$PROJECT_DIR$/application/Algorithm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/htmlcov/Algorithm_py.html" afterPath="$PROJECT_DIR$/application/htmlcov/Algorithm_py.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/htmlcov/index.html" afterPath="$PROJECT_DIR$/application/htmlcov/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/htmlcov/main_py.html" afterPath="$PROJECT_DIR$/application/htmlcov/main_py.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/htmlcov/status.json" afterPath="$PROJECT_DIR$/application/htmlcov/status.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/htmlcov/test_py.html" afterPath="$PROJECT_DIR$/application/htmlcov/test_py.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/main.py" afterPath="$PROJECT_DIR$/application/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/test.py" afterPath="$PROJECT_DIR$/application/test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/template.sql" afterPath="$PROJECT_DIR$/template.sql" />
     </list>
     <ignored path="JP-project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,22 +34,10 @@
       <file leaf-file-name="Algorithm.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/Algorithm.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.333333">
-              <caret line="145" column="16" selection-start-line="145" selection-start-column="16" selection-end-line="145" selection-end-column="35" />
+            <state vertical-scroll-proportion="21.703703">
+              <caret line="230" column="51" selection-start-line="230" selection-start-column="51" selection-end-line="230" selection-end-column="51" />
               <folding>
                 <element signature="e#38#52#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.814815">
-              <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
-              <folding>
-                <element signature="e#48#59#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,33 +46,11 @@
       <file leaf-file-name="test.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7917485">
-              <caret line="178" column="32" selection-start-line="178" selection-start-column="32" selection-end-line="178" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.7481343">
+              <caret line="287" column="53" selection-start-line="287" selection-start-column="53" selection-end-line="287" selection-end-column="53" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flask-test.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/flask-test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1111112">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/manage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -125,16 +91,16 @@
         <option value="$PROJECT_DIR$/application/algo_unitest.py" />
         <option value="$PROJECT_DIR$/application/templates/index.html" />
         <option value="$PROJECT_DIR$/application/flask-test.py" />
-        <option value="$PROJECT_DIR$/application/Algorithm.py" />
         <option value="$PROJECT_DIR$/application/main.py" />
+        <option value="$PROJECT_DIR$/application/Algorithm.py" />
         <option value="$PROJECT_DIR$/application/test.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="372" />
+    <option name="x" value="206" />
     <option name="y" value="23" />
-    <option name="width" value="1131" />
+    <option name="width" value="1073" />
     <option name="height" value="777" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -509,10 +475,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="372" y="23" width="1131" height="777" extended-state="0" />
+    <frame x="206" y="23" width="1073" height="777" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16357206" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1724138" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32624114" sideWeight="0.15364355" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -868,13 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sys_test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28429425">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -939,37 +898,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/Algorithm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.333333">
-          <caret line="145" column="16" selection-start-line="145" selection-start-column="16" selection-end-line="145" selection-end-column="35" />
-          <folding>
-            <element signature="e#38#52#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/flask-test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1111112">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.814815">
+        <state vertical-scroll-proportion="-9.343811">
           <caret line="31" column="35" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
           <folding>
             <element signature="e#48#59#0" expanded="true" />
@@ -977,10 +908,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/application/flask-test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39179105">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08395522">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/Algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="21.703703">
+          <caret line="230" column="51" selection-start-line="230" selection-start-column="51" selection-end-line="230" selection-end-column="51" />
+          <folding>
+            <element signature="e#38#52#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7917485">
-          <caret line="178" column="32" selection-start-line="178" selection-start-column="32" selection-end-line="178" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.7481343">
+          <caret line="287" column="53" selection-start-line="287" selection-start-column="53" selection-end-line="287" selection-end-column="53" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
