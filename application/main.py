@@ -23,6 +23,7 @@ trade_result = "No result yet"
 APP = Flask(__name__)
 APP._static_folder = "./static"
 
+query = "http://localhost:8080/query?id={}"
 DATABASEURI = "postgresql://postgres@localhost:5432/stock"
 data_config = "dbname='stock' user='postgres' host='localhost' password='' "
 ENGINE = create_engine(DATABASEURI)
@@ -195,7 +196,7 @@ def get_price():
     handle request of getting time and price
 
     """
-    query = "http://localhost:8080/query?id={}"
+    global query
     global total_num_of_get_price
     global total_value_of_market
     global last_request_num

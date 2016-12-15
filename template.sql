@@ -24,3 +24,7 @@ info VARCHAR(500));
 CREATE TABLE user_info(
 name VARCHAR(50) PRIMARY KEY,
 pass VARCHAR(300));
+
+INSERT INTO transact (id, time_quote, result, price, size, amount, "
+                       "value, avgr, total) VALUES ('2', 'time', 'success', "
+                       "'100', '19', '5', '23', '123', '19');

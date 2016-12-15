@@ -37,7 +37,6 @@ class WrongTestCase(unittest.TestCase):
             main.handle_b()
 
     def test_get_price(self):
-        rv = self.app.get('/get_price')
         self.app.get('/get_price')
         print "successfully get test"
 
@@ -148,27 +147,24 @@ class FlaskrTestCase(unittest.TestCase):
             quantity=100,
         ), follow_redirects=True)
         assert '1' in rv.data
-        rv = self.app.post('/submit', data=dict(
-            quantity=1000,
-        ), follow_redirects=True)
-        assert '1' in rv.data
-        rv = self.app.post('/submit', data=dict(
-            quantity=10000,
-        ), follow_redirects=True)
-        assert '1' in rv.data
-        rv = self.app.post('/submit', data=dict(
-            quantity=100000,
-        ), follow_redirects=True)
-        assert '1' in rv.data
+        with main.APP.test_request_context():
+            main.query = "some thing wrong with request"
+            main.get_price()
+            self.app.get('/get_price')
+            print "bad query test for get_price"
 
     def test_del_b(self):
+        instance = UseThread(10)
+
         conn = psycopg2.connect("dbname='stock' user='postgres' host='localhost' password='' ")
         cursor = conn.cursor()
+        sell_info = {'trans_id': 12, 'total_sell': 0, 'sum_value': 0.0, 'avg': 0.0, 'plan_value': 10000}
+        instance.insert_trans(sell_info, "failure occurred, recalculate strategy", None, cursor, conn)
         cursor.execute("INSERT INTO transact (id, time_quote, result, price, size, amount, "
                        "value, avgr, total) VALUES ('2', 'time', 'success', "
                        "'100', '19', '5', '23', '123', '19');")
         conn.commit()
-        print "Im testing history"
+        print "I'm testing history"
         rv = self.app.get('/b', data=dict(
             page='1', row='10'
         ))
@@ -186,7 +182,6 @@ class FlaskrTestCase(unittest.TestCase):
         try:
             main.original_sigint = signal.getsignal(signal.SIGINT)
             signal.signal(signal.SIGINT, main.exit_gracefully(1,2))
-            main.get_price()
         except SystemExit:
             print "pass exit test"
 
