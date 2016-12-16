@@ -473,9 +473,9 @@ def login():
         correct = result['pass']
         if check_password_hash(correct, password):
             newcurs.close()
-            return "1\n"
+            return render_template("index.html", **locals())
     newcurs.close()
-    return render_template("index.html", **locals())
+    return "1\n"
 
 
 if __name__ == "__main__":

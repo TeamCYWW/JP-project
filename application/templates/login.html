@@ -32,7 +32,7 @@
 
     <div class="container">
 
-      <form class="form-signin">
+      <form class="form-signin" novalidate>
         <h2 class="form-signin-heading">Please login</h2>
         <label class="sr-only">Username</label>
         <input id="inputUsername" class="form-control" placeholder="Username" required autofocus>
@@ -126,16 +126,16 @@
 	     }
 		$.ajax({
 			type: "POST",
-			url: "http://160.39.141.95:8000/login",
+			url: "http://127.0.0.1:8000/login",
 			data: {"username" : username,
 					"password" : password},
 			dataType: 'text',
 			success: function (msgResult){
 				if (msgResult=="1\n") {
-					self.location="http://160.39.141.95:8000/index";
+					BootstrapDialog.alert("Username and Password don't match");					
 				}
 				else
-					BootstrapDialog.alert("Username and Password don't match");
+					self.location="http://127.0.0.1:8000/index";
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				BootstrapDialog.alert('Time out' + textStatus);
