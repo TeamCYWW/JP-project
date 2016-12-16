@@ -132,10 +132,10 @@
 			dataType: 'text',
 			success: function (msgResult){
 				if (msgResult=="1\n") {
-					BootstrapDialog.alert("Username and Password don't match");					
+					self.location="http://127.0.0.1:8000/index";	
 				}
 				else
-					self.location="http://127.0.0.1:8000/index";
+					alert("Username and Password don't match");
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				BootstrapDialog.alert('Time out' + textStatus);
