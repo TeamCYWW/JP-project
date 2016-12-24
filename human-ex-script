@@ -1,0 +1,12 @@
+1. Open JP server 
+2. Open database
+3. Open main.py
+4. Open browser, enter 127.0.0.1:8000 
+5. When page load, you can see login page, click on register and you will see register form.
+6. Enter “test123” in username form and “12345” in password form click on register button
+7. Now we are back to login from, enter same username and password as what you just entered
+8. Click on login button and you are in trading page
+9. Go down to the bottom of the page, enter 100000 into form. Click on start trading button
+10. You can see trading happen by looking at graph. Click on refresh button to see record in the trading history form
+11. After trading finish, you can see alert and you can also start another trade.
+12. To finish program, exit browser, main.py, database and JP server
